@@ -63,7 +63,7 @@ def get_data():
 	test1_y = test1_y[test_indices]
 
 	return {"train_x": train_x, "train_y": train_y, "val_x": val_x, "val_y": val_y, "test_x": test_x, "test_y": test_y
-			"train1_x": train1_x, "train1_y": train1_y, "val1_x": val1_x, "val1_y": val1_y, "test1_x": test1_x, "test1_y": test1_y}						}
+			"train1_x": train1_x, "train1_y": train1_y, "val1_x": val1_x, "val1_y": val1_y, "test1_x": test1_x, "test1_y": test1_y}
 
 
 def plot(history):
