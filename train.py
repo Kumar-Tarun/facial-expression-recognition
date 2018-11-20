@@ -42,7 +42,7 @@ mod.add(Dense(256, kernel_regularizer = regularizers.l2(0.35)))
 mod.add(Dropout(0.5))
 mod.add(Activation('relu'))
 mod.add(Dense(256, kernel_regularizer = regularizers.l2(0.35)))
-mod.add(Dropout(0.5))
+mod.add(Dropout(0.55))
 mod.add(Activation('relu'))
 mod.add(Dense(7, name = "last_layer1"))
 mod.add(Activation('softmax', name = "Output1"))
@@ -55,7 +55,7 @@ model_checkpoint = ModelCheckpoint(filepath = 'weights1.hdf5', verbose = 1, save
 optimizer = Adam(lr = 0.0001)
 
 mod.compile(loss = 'categorical_crossentropy', optimizer = optimizer, metrics = ['accuracy'])
-history = mod.fit(train_x, train_y, epochs = 65, batch_size = 16, callbacks = [reduce_lr, model_checkpoint], verbose = 2, validation_data = (val_x, val_y))
+history = mod.fit(train_x, train_y, epochs = 60, batch_size = 16, callbacks = [reduce_lr, model_checkpoint], verbose = 2, validation_data = (val_x, val_y))
 
 plot(history)
 
