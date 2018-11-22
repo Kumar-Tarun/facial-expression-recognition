@@ -62,28 +62,28 @@ plot(history)
 # Network 2
 model = Sequential()
 
-model.add(Dense(256, input_shape = (612,), kernel_regularizer = regularizers.l2(0.13), name = "Input2"))
+model.add(Dense(256, input_shape = (612,), kernel_regularizer = regularizers.l2(0.25), name = "Input2"))
 model.add(BatchNormalization())
 model.add(Dropout(0.5))
 model.add(Activation('relu'))
-model.add(Dense(512, kernel_regularizer = regularizers.l2(0.13)))
+model.add(Dense(512, kernel_regularizer = regularizers.l2(0.25)))
 model.add(BatchNormalization())
 model.add(Dropout(0.5))
 model.add(Activation('relu'))
 model.add(Dense(7, name = "last_layer2"))
 model.add(Activation('softmax', name = "Output2"))
 
-optimizer = Adam(lr = 0.001)
+optimizer = Adam(lr = 0.0005)
 
 model.compile(loss = 'categorical_crossentropy', optimizer = optimizer, metrics = ['accuracy'])
 
 
-reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.1,
+reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.5,
                               patience=2, min_lr=0.00001, verbose=1)
                             
 model_checkpoint = ModelCheckpoint(filepath = 'weights2.hdf5', verbose = 1, save_best_only = True)
                               
 
-history = model.fit(train1_x, train1_y, epochs = 60, batch_size = 8, callbacks = [reduce_lr, model_checkpoint], verbose = 2, validation_data = (val1_x, val1_y))
+history = model.fit(train1_x, train1_y, epochs = 50, batch_size = 16, callbacks = [reduce_lr, model_checkpoint], verbose = 2, validation_data = (val1_x, val1_y))
 
 plot(history)
