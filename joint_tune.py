@@ -42,7 +42,7 @@ for layer in model2.layers[:8]:
     layer.trainable = False
     
 x = Add()([pred1, pred2])
-x = Dropout(0.3, name = "aaa")(x)
+x = Dropout(0.2, name = "aaa")(x)
 #x = Dense(7, name = "aa")(x)
 x = Activation('softmax', name = 'Output3')(x)
 
@@ -67,7 +67,7 @@ input_val_data = {'Input1_input': val_x, 'Input2_input': val1_x}
 output_val_data = {'Output1': val_y, 'Output2': val1_y, 'Output3': val_y}
 model_checkpoint = ModelCheckpoint(filepath = 'weightjt.hdf5', verbose = 1, save_best_only = True)
 
-history = model.fit(input_train_data, output_train_data, epochs = 60, batch_size = 8, callbacks = [model_checkpoint], validation_data = (input_val_data, output_val_data), verbose = 2)
+history = model.fit(input_train_data, output_train_data, epochs = 30, batch_size = 8, callbacks = [model_checkpoint], validation_data = (input_val_data, output_val_data), verbose = 2)
 
 
 input_test_data = {'Input1_input': test_x, 'Input2_input': test1_x}
